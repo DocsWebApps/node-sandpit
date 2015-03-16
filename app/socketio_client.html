@@ -2,58 +2,35 @@
 <html>
 <head>
   <link rel="stylesheet" href="styles/socketio_client.css">
+  <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
+
 <h1> My Chatter App </h1>
-<div id='chat-users'>
-  <h3>Users</h3>
-</div>
-<div id='chat-talk'>
-  <h3>Chat Window</h3>
-</div>
-<div id='chat-message'>
-  <form id="chat-form">
-    <input type="text">
-    <input id="chat-form-submit" type="submit">
-  </form>
+<div class='container'>
+  <div class='row'>
+    <div id='chat-users' class='col-md-3'>
+      <h3>Users</h3>
+    </div>
+
+    <div id='chat-main' class='col-md-9'>
+      <div id='chat-talk'>
+        <h3>Chat Window</h3>
+      </div>
+
+      <div id='chat-entry'>
+        <form id="chat-form">
+          <input id='chat-message' type="text">
+          <button id="chat-form-submit" type="button">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script src='socket.io/socket.io.js'></script>
 <script src="jquery/dist/jquery.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-<script src="bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
-<script>
-
-  var CHAT={
-    init: function() {
-      var server=io('http://localhost:8080');
-
-      console.log('Connected to server....');
-
-      server.on('greeting', function(message) {
-        console.log(message);
-        server.emit('message', 'Hi there from the client...');
-      });
-
-
-      server.on('messages', function(message) {
-        console.log(message);
-      });
-    }
-  };
-
-  CHAT.init();
-
-</script>
+<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="scripts/main.js"></script>
 </body>
 </html>                                                                                                                                  
