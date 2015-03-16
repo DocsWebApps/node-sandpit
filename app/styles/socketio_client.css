@@ -1,0 +1,25 @@
+#chat-users {
+  margin: 0px;
+  padding: 0px;
+  height: 500px;
+  width: 200px;
+  border: 2px solid black;
+  float: left; }
+
+#chat-talk {
+  margin: 0px;
+  padding: 0px;
+  height: 450px;
+  width: 750px;
+  border: 2px solid black;
+  position: relative;
+  left: 200px; }
+
+#chat-message {
+  margin: 0px;
+  padding: 0px;
+  height: 46px;
+  width: 750px;
+  border: 2px solid black;
+  position: relative;
+  left: 200px; }
