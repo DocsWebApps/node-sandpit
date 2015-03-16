@@ -14,14 +14,19 @@ var port=8080;
 app.use(express.static('../app'));
 app.use(express.static('../bower_components'));
 
-// Set up action on socket io connection
+// Set up a callback on a client socket io connection
 io.on('connection', function(client) {
-  console.log('Client to client connected via socket.io');
+  console.log('Client connected via socket.io');
   client.emit('greeting', 'Hello from the server...');
 
-  client.on('message', function(message) {
+  client.on('response', function(message) {
     console.log(message)
-    client.broadcast.emit('messages', 'Server - I got ya message');
+  });
+
+  client.on('client-msg', function(message){
+    client.broadcast.emit('server-msg', message);
+    client.emit('server-msg', message);
+    console.log(message);
   });
 });
 
