@@ -6,6 +6,7 @@ var app=express();
 // Set up a route
 app.get('/', function(request, response) {
   response.send("Hello World\n");
+  //response.json('Hello World');
 });
 
 app.get('/nodejs', function(request, response) {
