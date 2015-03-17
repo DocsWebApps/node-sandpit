@@ -13,8 +13,19 @@
 
 #planet-details {
   margin-top: 50px;
+  font-size: 1.75em;
 }
 
 legend {
   color: white;
+}
+
+#del-image {
+  height: 30px;
+  width: 30px;
+  margin: 0px 20px 0px -40px;
+}
+
+#planet-list li {
+  list-style: none;
 }

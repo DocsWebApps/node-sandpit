@@ -1,5 +1,20 @@
 var PLANETINDEX={
   init: function() {
+    var appendTo=function(planets) {
+      var list=[];
+      var content, planet;
+      for(var i in planets) {
+        planet=planets[i];
+        content="<img id='del-image' src='/images/delete.png'><a href='/planet/"+planet+"'>"+planet+"</a>"
+        list.push($('<li>', {html: content}));
+      }
+      $('#planet-list').append(list);
+    };
+
+    $('#del-image').on('click', function(event) {
+      console.log('gotcha');
+    });
+
     $('#planet-form').on('submit', function(event) {
       event.preventDefault();
       var form=$(this);
@@ -10,20 +25,14 @@ var PLANETINDEX={
         url: '/planets',
         data: planetData
         }).done(function(returnData) {
-          console.log(returnData);
+          appendTo([returnData]);
+          form.trigger('reset');
       });
     });
 
-    $.get('/planets', function(data) {
-      var planets=[];
-      for(var i in data) {
-        planets.push($('<li>',{text: data[i]}));
-      }
-      $('#planet-list').append(planets);
-    });
+    $.get('/planets', appendTo);
   }
 };
-
 
 $(document).ready(function() {
   PLANETINDEX.init();
