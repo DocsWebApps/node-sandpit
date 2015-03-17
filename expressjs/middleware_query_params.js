@@ -1,9 +1,8 @@
 // Middleware is important in Express
 // A middleware component is a layer that the inccoming request passes through
 // Many middleware layers can be in place and each middleware layer perfoms some processing 
-// and passes the request/response on to the next layer
+// and passes the request/response onto the next layer
 // At some point a middleware layer will respond to the client at which point the request ends
-
 var express=require('express'),
     app=express(),
     port=8888,
@@ -11,10 +10,12 @@ var express=require('express'),
     locations={'Fixed':'Static','Movable':'Moving','Rotating':'Spinning'};    
 
 // Use our own middleware layer, defined in the file middleware_logger.js
+// Middleware Layer One
 var logger=require('./middleware_logger.js');
 app.use(logger);
 
-// You can even delcare the function in the callback
+// You can even write the middleware function as a parameter
+// Middleware Layer Two
 app.use(function(request,response,next) {
   var stream=process.stdout;
   stream.write('Second middleware layer\n');
@@ -24,13 +25,16 @@ app.use(function(request,response,next) {
 // The only middleware that comes built into express is serve-static
 // It enables you to tell express which folders hold resources that can be 
 // served up by the process
+// Middleware Layer Three
 app.use(express.static('../app'));
+// Middleware Layer Four
 app.use(express.static('../bower_components'));
 
 // Use middleware to look for variations on parameters
 // Fixed, fixed, FiXed,fIxEd for example
 // Put the param name back into the request object
 // so that we can use it in multiple routes 
+// Middleware Layer Five
 app.param('name', function(request, response, next) {
   var name=request.params.name;
   request.paramName=name[0].toUpperCase()+name.slice(1).toLowerCase();
@@ -38,6 +42,8 @@ app.param('name', function(request, response, next) {
 });
 
 // Dynamic routes, similar to ruby :-) - request.params.{param}
+// The request has passed through the 5 middleware layers above and in
+// each end point below a response is sent thus ending the request process
 app.get('/blocks/:name', function(request, response){
   var description=blocks[request.paramName];
   if(description) {

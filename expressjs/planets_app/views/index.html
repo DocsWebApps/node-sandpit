@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html lang='EN'>
+<head>
+  <title>
+    Docs Planets Node App
+  </title>
+  <link rel='stylesheet' href='/bootstrap/dist/css/bootstrap.min.css'>
+  <link rel='stylesheet' href='/css/styles.css'>
+</head>
+<body>
+<div id='main-section'>
+  <div id='planet-entry'>
+    <form class="form-horizontal" id='planet-form'>
+      <legend class='col-sm-offset-2'>Enter Planet Details...</legend>
+      <div class="form-group">
+        <label for="inputName" class="col-sm-2 control-label">Planet Name</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="inputName" placeholder="Enter planet name...">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputDesc" class="col-sm-2 control-label">Planet description</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" id="inputDesc" placeholder="Enter planet description...">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div id='planet-details' class='col-sm-offset-2'>
+    <ul id='planet-list'></ul>
+  </div>
+</div>
+
+  <script src='/jquery/dist/jquery.min.js'></script>
+  <script src='/bootstrap/dist/js/bootstrap.min.js'></script>
+  <script src='/js/client.js'></script>
+</body>
+</html>
