@@ -15,10 +15,15 @@ app.use(express.static('views')); // html views
 app.use(express.static('public')); // css, js, images
 app.use(express.static('../../bower_components')); // jquery, bootstrap
 
-// Take the planet param passed in and place it in the request object
+// General function to Capitalise planet names
+var capitalise=function(planet) {
+  return planet[0].toUpperCase()+planet.slice(1).toLowerCase();
+};
+
+// Take the planet param passed in, capitalise it and place it in the request object
 app.param('planet', function(request,response,next) {
   var planet=request.params.planet;
-  request.planet=planet[0].toUpperCase()+planet.slice(1).toLowerCase();
+  request.planet=capitalise(planet);
   next();
 });
 
@@ -27,9 +32,9 @@ app.delete('/planet/:planet', function(request, response) {
   var planet=request.planet;
   if(planets[planet]) {
     delete planets[planet];
-    sendStatus(200);
+    response.sendStatus(200);
   } else {
-    sendStatus(404);
+    response.sendStatus(404);
   }
 });
 
@@ -55,8 +60,9 @@ app.get('/planets', function(request,response) {
 // this enables us to reuse middleware handlers for validation, authentiction etc
 app.post('/planets', parseUrlencoded, function(request, response) {
   var newPlanet=request.body;
-  planets[newPlanet.name]=newPlanet.description;
-  response.status(201).json(newPlanet.name);
+  var name=capitalise(newPlanet.name);
+  planets[name]=newPlanet.description;
+  response.status(201).json(name);
 })
 
 // Listen on port

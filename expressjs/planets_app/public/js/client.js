@@ -5,14 +5,25 @@ var PLANETINDEX={
       var content, planet;
       for(var i in planets) {
         planet=planets[i];
-        content="<img id='del-image' src='/images/delete.png'><a href='/planet/"+planet+"'>"+planet+"</a>"
+        content="<a href='#' data-planet="+planet+"><img id='del-image' src='/images/delete.png'></a><a href='/planet/"+planet+"'>"+planet+"</a>"
         list.push($('<li>', {html: content}));
       }
       $('#planet-list').append(list);
     };
 
-    $('#del-image').on('click', function(event) {
-      console.log('gotcha');
+    $('#planet-list').on('click','a[data-planet]', function(event) {
+      var target=$(event.currentTarget);
+      var planet=target.data('planet');
+      if(!confirm('Are you sure you want to delete '+planet+' ?')) {
+        return false;
+      }
+
+      $.ajax({
+        url: '/planet/'+planet,
+        type: 'DELETE'
+      }).done(function() {
+        target.parents('li').remove();
+      });
     });
 
     $('#planet-form').on('submit', function(event) {
