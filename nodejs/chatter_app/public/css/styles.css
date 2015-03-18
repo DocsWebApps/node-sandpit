@@ -1,0 +1,36 @@
+#chat-users {
+  margin: 0px;
+  padding: 0px;
+  height:500px;
+  border: 2px solid black;
+}
+
+#chat-talk {
+  margin: 0px;
+  padding: 0px;
+  height:450px;
+  border: 2px solid black;
+ }
+
+#chat-entry {
+  margin: 0px;
+  padding: 0px;
+  height: 50px;
+  border: 2px solid black;
+}
+
+#chat-main {
+  margin-left: -18px;
+}
+
+h1, h3 {
+  text-align: center;
+}
+
+h4 {
+  margin-left:20px;
+}
+
+#chat-message {
+  width: 600px;
+}

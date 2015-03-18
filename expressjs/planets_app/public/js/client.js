@@ -5,7 +5,7 @@ var PLANETINDEX={
       var content, planet;
       for(var i in planets) {
         planet=planets[i];
-        content="<a href='#' data-planet="+planet+"><img id='del-image' src='/images/delete.png'></a><a href='/planet/"+planet+"'>"+planet+"</a>"
+        content="<a href='#' data-planet="+planet+"><img id='del-image' src='/images/delete.png'></a><a href='/planets/"+planet+"'>"+planet+"</a>"
         list.push($('<li>', {html: content}));
       }
       $('#planet-list').append(list);
@@ -19,7 +19,7 @@ var PLANETINDEX={
       }
 
       $.ajax({
-        url: '/planet/'+planet,
+        url: '/planets/'+planet,
         type: 'DELETE'
       }).done(function() {
         target.parents('li').remove();
